@@ -2492,15 +2492,15 @@ ul {
 }
 
 /* line 19, /Applications/MAMP/htdocs/old/palash/cl/shop_html/sass/_banner.scss */
-.banner_part:after {
-  position: absolute;
-  content: "";
-  left: 0;
-  bottom: 0;
-  background-color: #B08EAD;
-  width: 196px;
-  height: 618px;
-}
+/*.banner_part:after {*/
+/*  position: absolute;*/
+/*  content: "";*/
+/*  left: 0;*/
+/*  bottom: 0;*/
+/*  background-color: #B08EAD;*/
+/*  width: 196px;*/
+/*  height: 618px;*/
+/*}*/
 
 @media (max-width: 991px) {
   /* line 19, /Applications/MAMP/htdocs/old/palash/cl/shop_html/sass/_banner.scss */
