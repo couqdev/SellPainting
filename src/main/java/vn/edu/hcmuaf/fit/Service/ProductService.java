@@ -74,11 +74,7 @@ public class ProductService {
         }
         return product;
     }
-    public static void main(String[] args) {
-        ProductService p = new ProductService();
-        for(Image pa : ProductService.getInstance().getAllProduct().get(0).getImages()){
-            System.out.println(pa.getSrc());
-        }
 
+    public static void main(String[] args) {
     }
 }

@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<jsp:useBean id="cart" class="vn.edu.hcmuaf.fit.Model.Cart" scope="session"/>
 <!doctype html>
 <html lang="zxx">
 
@@ -60,7 +61,6 @@
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown_2">
                                     <a class="dropdown-item" href="login.html">
                                         login
-
                                     </a>
                                     <a class="dropdown-item" href="checkout.html">product checkout</a>
                                     <a class="dropdown-item" href="cart.html">shopping cart</a>
@@ -87,7 +87,7 @@
                     </div>
                     <div class="hearer_icon d-flex align-items-center">
                         <a id="search_1" href="javascript:void(0)"><i class="ti-search"></i></a>
-                        <a href="cart.html">
+                        <a href="/SellPainting_war/Cart">
                             <i class="flaticon-shopping-cart-black-shape"></i>
                         </a>
                     </div>
