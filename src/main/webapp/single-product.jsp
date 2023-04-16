@@ -51,6 +51,10 @@
     Locale localeVN = new Locale("vi", "VN");
     NumberFormat currencyVN = NumberFormat.getCurrencyInstance(localeVN);
     Product p = (Product) request.getAttribute("product");
+    String noti = request.getParameter("noti");
+    if(noti==null){
+        noti="";
+    }
 %>
 <!--================Single Product Area =================-->
 <div class="product_image_area">
@@ -88,17 +92,28 @@
                                 <p>Quantity</p>
                                 <div class="product_count d-inline-block">
                                     <span class="product_count_item inumber-decrement"> <i class="ti-minus"></i></span>
-                                    <input id="qu" required="required" class="product_count_item input-number" name="quantity" type="text" value="1"
-                                           min="1" >
+                                    <input id="qu" required="required" class="product_count_item input-number"
+                                           name="quantity" type="text" value="1"
+                                           min="1">
                                     <span class="product_count_item number-increment"> <i class="ti-plus"></i></span>
                                 </div>
                                 <p><%= currencyVN.format(p.getPrice()) %>
                                 </p>
                             </div>
                             <p id="alertcontent" class="help-block text-danger"></p>
+                            <%if(!noti.equals("Add to cart successfully")){%>
+                            <p id="noti" class="help-block text-danger">
+                                <%= noti%>
+                            </p>
+                            <%}else{%>
+                            <p id="noti" class="help-block text-success">
+                                <%= noti%>
+                            </p>
+                            <%}%>
                             <div class="add_to_cart">
                                 <input type="hidden" name="id" value="<%= p.getId() %>">
-                                <button onclick="check()" required="required" type="submit" class="btn_3">add to cart</button>
+                                <button onclick="check()" required="required" type="submit" class="btn_3">add to cart
+                                </button>
                             </div>
                         </form>
                     </div>
@@ -182,13 +197,15 @@
 </footer>
 <!--::footer_part end::-->
 <script>
-    function check(){
+    function check() {
         var quantity = add.quantity.value;
-        if(quantity==""){
+        if (quantity == "") {
             document.getElementById("alertcontent").innerHTML = "Requirement to enter quantity";
+            document.getElementById("noti").innerHTML = "";
         }
     }
-    window.addEventListener("onclick",function(){
+
+    window.addEventListener("onclick", function () {
         check()
     })
 </script>

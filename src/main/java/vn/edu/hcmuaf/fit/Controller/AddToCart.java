@@ -22,19 +22,26 @@ public class AddToCart extends HttpServlet {
         try {
             quan = Integer.parseInt(request.getParameter("quantity"));
         } catch (Exception e) {
-
+            response.sendRedirect("/SellPainting_war/DetailProduct?id=" + id+"&noti=Requires input by number");
+            return;
         }
         Product p = ProductService.getInstance().getProduct(id);
         if (quan <= 0) {
-
+            response.sendRedirect("/SellPainting_war/DetailProduct?id=" + id+"&noti=Request at least 1 product");
         } else {
             if (cart.getQuantityProduct(p.getId()) + quan <= p.getQuantity()) {
                 p.setQuantity(quan);
                 cart.addProduct(p);
+                request.getSession().setAttribute("cart", cart);
+                response.sendRedirect("/SellPainting_war/DetailProduct?id=" + id+"&noti=Add to cart successfully");
+            }else{
+                if(cart.getQuantityProduct(p.getId()) + quan > p.getQuantity()){
+                    response.sendRedirect("/SellPainting_war/DetailProduct?id=" + id+"&noti=The number of products is not enough");
+                }
             }
+
         }
-        request.getSession().setAttribute("cart", cart);
-        response.sendRedirect("/SellPainting_war/DetailProduct?id=" + id);
+
     }
 
     @Override
