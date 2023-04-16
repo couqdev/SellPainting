@@ -58,36 +58,49 @@
         <div class="row justify-content-center">
             <div class="col-lg-12">
                 <div class="product_img_slide owl-carousel">
-                    <%if(p.getImages().size()<=0){%>
+                    <%if (p.getImages().size() <= 0) {%>
                     <div class="single_product_img">
                         <img src="img/product/noimage.jpg" alt="#" class="img-fluid">
                     </div>
-                    <%}else{for(Image i: p.getImages()){%>
+                    <%
+                    } else {
+                        for (Image i : p.getImages()) {
+                    %>
                     <div class="single_product_img">
                         <img src="<%= i.getSrc() %>" alt="#" class="img-fluid">
                     </div>
-                    <%}}%>
+                    <%
+                            }
+                        }
+                    %>
                 </div>
             </div>
             <div class="col-lg-8">
                 <div class="single_product_text text-center">
-                    <h3><%= p.getName() %></h3>
+                    <h3><%= p.getName() %>
+                    </h3>
                     <p>
                         <%= p.getDecription() %>
                     </p>
                     <div class="card_area">
-                        <div class="product_count_area">
-                            <p>Quantity</p>
-                            <div class="product_count d-inline-block">
-                                <span class="product_count_item inumber-decrement"> <i class="ti-minus"></i></span>
-                                <input class="product_count_item input-number" type="text" value="1" min="0" max="10">
-                                <span class="product_count_item number-increment"> <i class="ti-plus"></i></span>
+                        <form action="/SellPainting_war/AddToCart" method="get" id="add">
+                            <div class="product_count_area">
+                                <p>Quantity</p>
+                                <div class="product_count d-inline-block">
+                                    <span class="product_count_item inumber-decrement"> <i class="ti-minus"></i></span>
+                                    <input id="qu" required="required" class="product_count_item input-number" name="quantity" type="text" value="1"
+                                           min="1" >
+                                    <span class="product_count_item number-increment"> <i class="ti-plus"></i></span>
+                                </div>
+                                <p><%= currencyVN.format(p.getPrice()) %>
+                                </p>
                             </div>
-                            <p><%= currencyVN.format(p.getPrice()) %></p>
-                        </div>
-                        <div class="add_to_cart">
-                            <a href="#" class="btn_3">add to cart</a>
-                        </div>
+                            <p id="alertcontent" class="help-block text-danger"></p>
+                            <div class="add_to_cart">
+                                <input type="hidden" name="id" value="<%= p.getId() %>">
+                                <button onclick="check()" required="required" type="submit" class="btn_3">add to cart</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -168,7 +181,17 @@
     </div>
 </footer>
 <!--::footer_part end::-->
-
+<script>
+    function check(){
+        var quantity = add.quantity.value;
+        if(quantity==""){
+            document.getElementById("alertcontent").innerHTML = "Requirement to enter quantity";
+        }
+    }
+    window.addEventListener("onclick",function(){
+        check()
+    })
+</script>
 <!-- jquery plugins here-->
 <script src="js/jquery-1.12.1.min.js"></script>
 <!-- popper js -->
