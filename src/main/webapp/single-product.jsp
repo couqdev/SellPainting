@@ -2,6 +2,7 @@
 <%@ page import="java.util.Locale" %>
 <%@ page import="java.text.NumberFormat" %>
 <%@ page import="vn.edu.hcmuaf.fit.Model.Image" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!doctype html>
 <html lang="zxx">
 
@@ -28,6 +29,13 @@
     <link rel="stylesheet" href="css/slick.css">
     <!-- style CSS -->
     <link rel="stylesheet" href="css/style.css">
+    <style>
+        input[type=number]::-webkit-inner-spin-button,
+        input[type=number]::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+    </style>
 </head>
 
 <body>
@@ -83,6 +91,8 @@
                 <div class="single_product_text text-center">
                     <h3><%= p.getName() %>
                     </h3>
+                    <p>Số lượng còn lại: <%= p.getQuantity() %>
+                    </p>
                     <p>
                         <%= p.getDecription() %>
                     </p>
@@ -93,7 +103,7 @@
                                 <div class="product_count d-inline-block">
                                     <span class="product_count_item inumber-decrement"> <i class="ti-minus"></i></span>
                                     <input id="qu" required="required" class="product_count_item input-number"
-                                           name="quantity" type="text" value="1"
+                                           name="quantity" type="number" value="1"
                                            min="1">
                                     <span class="product_count_item number-increment"> <i class="ti-plus"></i></span>
                                 </div>
@@ -101,13 +111,21 @@
                                 </p>
                             </div>
                             <p id="alertcontent" class="help-block text-danger"></p>
-                            <%if(!noti.equals("Add to cart successfully")){%>
+                            <%if(!noti.equals("successfully")){%>
                             <p id="noti" class="help-block text-danger">
-                                <%= noti%>
+                                <%if(noti.equals("notEnough")){%>
+                                Không đủ số lượng
+                                <%}%>
+                                <%if(noti.equals("outSold")){%>
+                                Đã hết hàng
+                                <%}%>
+                                <%if(noti.equals("atLeastOne")){%>
+                                Yêu cầu nhập ít nhất 1 sản phẩm
+                                <%}%>
                             </p>
                             <%}else{%>
                             <p id="noti" class="help-block text-success">
-                                <%= noti%>
+                                Thêm thành công
                             </p>
                             <%}%>
                             <div class="add_to_cart">
@@ -200,7 +218,7 @@
     function check() {
         var quantity = add.quantity.value;
         if (quantity == "") {
-            document.getElementById("alertcontent").innerHTML = "Requirement to enter quantity";
+            document.getElementById("alertcontent").innerHTML = "Không được để trống số lượng";
             document.getElementById("noti").innerHTML = "";
         }
     }

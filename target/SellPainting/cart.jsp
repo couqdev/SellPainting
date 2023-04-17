@@ -87,10 +87,10 @@
                         </td>
                         <td>
                             <div class="product_count">
-                                <a href="<%= "/SellPainting_war/Minus?id="+p.getId() %>"><span class="input-number-decrement"> <i class="ti-minus"></i></span></a>
+                                <span class="input-number-decrement"><a href="<%= "/SellPainting_war/Minus?id="+p.getId() %>"> <i class="ti-minus"></i></a></span>
                                 <input class="" type="text" value="<%= p.getQuantity() %>" min="0">
                                 <%if(cart.getQuantityProduct(p.getId())+1 <= ProductService.getInstance().getProduct((int)p.getId()).getQuantity()){%>
-                                <a href="<%= "/SellPainting_war/Plus?id="+p.getId() %>"> <span class="input-number-increment"> <i class="ti-plus"></i></span></a>
+                                <span class="input-number-increment"> <a href="<%= "/SellPainting_war/Plus?id="+p.getId() %>"><i class="ti-plus"></i></a></span>
                                 <%}else{%>
                                 <a style="pointer-events: none;color: gray;text-decoration: none;cursor: default;" href="<%= "/SellPainting_war/Plus?id="+p.getId() %>"> <span class="input-number-increment"> <i class="ti-plus"></i></span></a>
                                 <%}%>
