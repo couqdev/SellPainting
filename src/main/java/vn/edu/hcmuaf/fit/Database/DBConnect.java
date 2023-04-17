@@ -9,10 +9,11 @@ public class DBConnect {
     private static String PASS = "";
     private Connection connection;
 
-    private DBConnect(){
+    private DBConnect() {
     }
-    public static DBConnect getInstance(){
-        if(instance == null){
+
+    public static DBConnect getInstance() {
+        if (instance == null) {
             instance = new DBConnect();
             try {
                 instance.connect();
@@ -26,21 +27,21 @@ public class DBConnect {
     }
 
     private void connect() throws SQLException, ClassNotFoundException {
-        if(connection==null||connection.isClosed()){
+        if (connection == null || connection.isClosed()) {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            connection = DriverManager.getConnection(DB_URL,USER,PASS);
+            connection = DriverManager.getConnection(DB_URL, USER, PASS);
         }
     }
-    public Statement get(){
-        try{
+
+    public Statement get() {
+        try {
             connect();
-            return connection.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_READ_ONLY);
-        }catch (SQLException | ClassNotFoundException e){
+            return connection.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
+        } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         }
         return null;
     }
-
     public Connection getConnection() {
         return connection;
     }

@@ -18,25 +18,24 @@ public class AddToCart extends HttpServlet {
             cart = new Cart();
         }
         int id = Integer.parseInt(request.getParameter("id"));
-        int quan = 0;
-        try {
-            quan = Integer.parseInt(request.getParameter("quantity"));
-        } catch (Exception e) {
-            response.sendRedirect("/SellPainting_war/DetailProduct?id=" + id+"&noti=Requires input by number");
-            return;
-        }
+        int quan = Integer.parseInt(request.getParameter("quantity"));
+
         Product p = ProductService.getInstance().getProduct(id);
         if (quan <= 0) {
-            response.sendRedirect("/SellPainting_war/DetailProduct?id=" + id+"&noti=Request at least 1 product");
+            response.sendRedirect("/SellPainting_war/DetailProduct?id=" + id+"&noti=atLeastOne");
         } else {
+            if(p.getQuantity()==0){
+                response.sendRedirect("/SellPainting_war/DetailProduct?id=" + id+"&noti=outSold");
+                return;
+            }
             if (cart.getQuantityProduct(p.getId()) + quan <= p.getQuantity()) {
                 p.setQuantity(quan);
                 cart.addProduct(p);
                 request.getSession().setAttribute("cart", cart);
-                response.sendRedirect("/SellPainting_war/DetailProduct?id=" + id+"&noti=Add to cart successfully");
+                response.sendRedirect("/SellPainting_war/DetailProduct?id=" + id+"&noti=successfully");
             }else{
                 if(cart.getQuantityProduct(p.getId()) + quan > p.getQuantity()){
-                    response.sendRedirect("/SellPainting_war/DetailProduct?id=" + id+"&noti=The number of products is not enough");
+                    response.sendRedirect("/SellPainting_war/DetailProduct?id=" + id+"&noti=notEnough");
                 }
             }
 
