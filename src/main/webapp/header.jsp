@@ -50,8 +50,10 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="about.html">about</a>
                             </li>
+                            <%--1. Truy cap danh sach san pham tu trang chu --%>
                             <li class="nav-item">
                                 <a class="nav-link" href="/SellPainting_war/ListProduct">Product List</a>
+                                <%--2. Chuyen huong nguoi dung den trang danh sach san pham --%>
                             </li>
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="blog.html" id="navbarDropdown_3"
