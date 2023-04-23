@@ -97,7 +97,9 @@
                         <div class="col-lg-6 col-sm-6">
                             <div class="single_product_item">
                                 <img <%if(p.getImages().size()<=0){%>src="img/product/noimage.jpg"<%}else{%> src="<%=p.getImages().get(0).getSrc()%>" <%}%> alt=" #" class="img-fluid">
+                                <%--3. Truy cap chi tiet san pham tu danh sach san pham --%>
                                 <h3><a href="<%="/SellPainting_war/DetailProduct?id=" +p.getId()%>"><%=p.getName()%></a></h3>
+                                <%--4. Chuyen huong nguoi dung den trang chi tiet san pham --%>
                                 <p><%=currencyVN.format(p.getPrice())%></p>
                             </div>
                         </div>

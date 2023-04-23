@@ -97,6 +97,7 @@
                         <%= p.getDecription() %>
                     </p>
                     <div class="card_area">
+                        <%--5. Nguoi dung chon so luong va nhan vao nut them vao gio hang --%>
                         <form action="/SellPainting_war/AddToCart" method="get" id="add">
                             <div class="product_count_area">
                                 <p>Quantity</p>
@@ -130,6 +131,7 @@
                             <%}%>
                             <div class="add_to_cart">
                                 <input type="hidden" name="id" value="<%= p.getId() %>">
+                                <%--6. Kiem tra tinh hop le (Khong duoc de trong so luong) --%>
                                 <button onclick="check()" required="required" type="submit" class="btn_3">add to cart
                                 </button>
                             </div>
@@ -215,11 +217,15 @@
 </footer>
 <!--::footer_part end::-->
 <script>
+
     function check() {
         var quantity = add.quantity.value;
         if (quantity == "") {
-            document.getElementById("alertcontent").innerHTML = "Requirement to enter quantity";
+            <%--7.2. Hien thi thong bao "khong duoc de trong so luong" --%>
+            document.getElementById("alertcontent").innerHTML = "Không được để trống số lượng";
             document.getElementById("noti").innerHTML = "";
+        }else{
+            <%--7.1. Gui id san pham va so luong len sever --%>
         }
     }
 
