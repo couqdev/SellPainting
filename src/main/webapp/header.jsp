@@ -35,7 +35,7 @@
         <div class="row align-items-center justify-content-center">
             <div class="col-lg-12">
                 <nav class="navbar navbar-expand-lg navbar-light">
-                    <a class="navbar-brand" href="index.html"> <img src="img/logo.png" alt="logo"> </a>
+                    <a class="navbar-brand" href="index.jsp"> <img src="img/logo.png" alt="logo"> </a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse"
                             data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                             aria-expanded="false" aria-label="Toggle navigation">
@@ -45,15 +45,13 @@
                     <div class="collapse navbar-collapse main-menu-item" id="navbarSupportedContent">
                         <ul class="navbar-nav">
                             <li class="nav-item">
-                                <a class="nav-link" href="index.html">Home</a>
+                                <a class="nav-link" href="index.jsp">Home</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="about.html">about</a>
                             </li>
-                            <%--1. Truy cap danh sach san pham tu trang chu --%>
                             <li class="nav-item">
                                 <a class="nav-link" href="/SellPainting_war/ListProduct">Product List</a>
-                                <%--2. Chuyen huong nguoi dung den trang danh sach san pham --%>
                             </li>
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="blog.html" id="navbarDropdown_3"
@@ -61,9 +59,6 @@
                                     pages
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown_2">
-                                    <a class="dropdown-item" href="login.html">
-                                        login
-                                    </a>
                                     <a class="dropdown-item" href="checkout.html">product checkout</a>
                                     <a class="dropdown-item" href="cart.html">shopping cart</a>
                                     <a class="dropdown-item" href="confirmation.html">confirmation</a>
@@ -92,6 +87,13 @@
                         <a href="/SellPainting_war/Cart">
                             <i class="flaticon-shopping-cart-black-shape"></i>
                         </a>
+<%-- 1. Truy cập vào Login ở phần header của Trang chủ --%>
+                        <div id="login">
+                            <%-- 2. Chuyển hướng đến trang Login --%>
+                            <a class="login" href="/SellPainting_war/LoginController">
+                                login
+                            </a>
+                        </div>
                     </div>
                 </nav>
             </div>
