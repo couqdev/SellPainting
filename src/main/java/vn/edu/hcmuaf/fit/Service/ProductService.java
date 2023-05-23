@@ -58,6 +58,7 @@ public class ProductService {
         }
         return list;
     }
+//    9. Tao ra san pham voi thong tin trong database
     public Product getProduct(int id) {
         DBConnect dbConnect = DBConnect.getInstance();
         Product product = new Product();

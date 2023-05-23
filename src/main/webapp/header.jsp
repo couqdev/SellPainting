@@ -51,6 +51,8 @@
                                 <a class="nav-link" href="about.html">about</a>
                             </li>
                             <li class="nav-item">
+                                <%--1. Truy cap danh sach san pham tu thanh header --%>
+                                    <%--2. Chuyen huong nguoi mua den trang danh sach san pham --%>
                                 <a class="nav-link" href="/SellPainting_war/ListProduct">Product List</a>
                             </li>
                             <li class="nav-item dropdown">
